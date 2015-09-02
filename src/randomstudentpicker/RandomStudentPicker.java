@@ -45,7 +45,7 @@ public class RandomStudentPicker extends Application {
 	JsonObject json = loadJSONFile(STUDENT_NAMES_FILE);
 	JsonArray studentsArray = json.getJsonArray("names");
 	
-	// AND LOAD THE IMAGES FOR THE NAMES
+	// AND LOAD THE IMAGES FOR THE NAMES 
 	for (int i = 0; i < studentsArray.size(); i++) {
 	    students.add(studentsArray.getString(i));
 	}
@@ -74,24 +74,24 @@ public class RandomStudentPicker extends Application {
 		Task<Void> task = new Task<Void>() {
 		    @Override
 		    protected Void call() throws Exception {
-			for (int i = 0; i < 15; i++) {
-			    String student = students.get(0);
-
+			for (int i = 0; i < 20; i++) {
+			    String student = students.get(i);
+                        
 			    // THIS WILL BE DONE ASYNCHRONOUSLY VIA MULTITHREADING
 			    Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-				    studentNameLabel.setText(student);
+				    studentNameLabel.setText(pickRandomStudent());
 				}
 			    });
 
 			    // SLEEP EACH FRAME
 			    try {
-				Thread.sleep(0);
+				Thread.sleep(i);
 			    } catch (InterruptedException ie) {
 				ie.printStackTrace();
 			    }
-			}
+                        }
 			return null;
 		    }
 		};
